@@ -10,7 +10,7 @@ class UsersController extends AppController{
 		
 		//implementação da paginação
 		$this->paginate = [
-        	'limit' => 10,
+        	'limit' => 12,
         	'order' => [
         		'Users.id' => 'asc',
         	]
