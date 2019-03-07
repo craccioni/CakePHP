@@ -22,4 +22,28 @@ class UsersController extends AppController{
 		$usuarios = $this->paginate($this->Users);
 		$this->set(compact('usuarios'));
 	}
+
+	public function view($id = null){
+
+		$usuario = $this->Users->get($id);
+		$this->set(['usuario' => $usuario]);
+	}
+
+	public function add() {
+
+		$user = $this->Users->newEntity();
+
+		if($this->request->is('post')){
+			$user = $this->Users->patchEntity($user, $this->request->getData());
+			
+			if($this->Users->save($user)){
+				$this->Flash->success(_('Usuário cadastrado com sucesso'));
+				return $this->redirect(['action' => 'index']);
+			} else {
+				$this->Flash->success(_('Erro: Usuário não foi cadastrado com sucesso'));
+			}
+		}
+
+		$this->set(compact('user'));
+	}
 }

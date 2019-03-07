@@ -1,5 +1,5 @@
 <div class="user index large-12 medium-12 columns content">
-	<h3><?php echo 'Usuário';?></h3>
+	<h3><?php echo 'Lista de Usuários';?></h3>
 	<table>
 		<thead>
 			<tr>
@@ -15,11 +15,16 @@
 				<td><?php echo $usuario->id; ?></td>
 				<td><?php echo $usuario->name; ?></td>
 				<td><?php echo $usuario->email; ?></td>
-				<td>Ver Editar Apagar</td>
+				<td>
+					<?php 
+					echo $this->Html->link(('Ver'), ['action' => 'view',$usuario->id]);
+					?>
+				Editar Apagar</td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
+	<?= $this->Html->link(_('Cadastrar novo usuário'), ['action' => 'add']) ?>
 	<div class="paginator">
 		<ul class="pagination">
 			<?php echo $this->Paginator->first('<<' .__(' Primeira')); ?>

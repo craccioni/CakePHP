@@ -14,5 +14,5 @@ class User extends Entity {
 		'password'=>true,
 		'created'=>true,
 		'modified'=>true
-	]
+	];
 }
