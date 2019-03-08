@@ -1,9 +1,9 @@
-<h1>Cadastrar Usuários </h1>
-<?php
+<h1>Editar Usuário</h1>
+<?php 
 	echo $this->Form->create($user);
 	echo $this->Form->control('name');
 	echo $this->Form->control('email');
 	echo $this->Form->control('username');
 	echo $this->Form->control('password');
-	echo $this->Form->button('Cadastrar');
+	echo $this->Form->button('Salvar');
 	echo $this->Form->end();

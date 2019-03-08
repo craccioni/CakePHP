@@ -8,30 +8,65 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 class UsersTable extends Table {
+
 	public function initialize(array $config) {
+
 		parent::initialize($config);
+
 		$this->table('users');
 
 		$this->addBehavior('Timestamp');
 	}
-}
 
-public function initialize () {
+	public function validationDefault (Validator $validator) {
 
-	parent::initialize($config);
-	$this->setTable('users');
-	$this->addBehavior('Timestamp')
-}
+        $validator
+        ->integer('id')
+        ->allowEmpty('id', 'create');
 
-public function validationDefault (Validator $validator) {
+        $validator
+        ->requirePresence('name', 'create')
+        ->notEmpty('name');
 
-	$validator
-	->integer('id')
-	->allowEmpty('id', 'create');
+        $validator
+        ->requirePresence('email', 'create')
+        ->notEmpty('email');
 
-	$validator
-	->requirePresence('name', 'create')
-	->notEmpty('name');
+        $validator
+        ->requirePresence('username', 'create')
+        ->notEmpty('username');
 
-	return $validator;
+        $validator
+        ->requirePresence('password', 'create')
+        ->notEmpty('password');
+
+        return $validator;
+	}
+
+        public function buildRules(RulesChecker $rules) {
+            // Add a rule that is applied for create and update operations
+            $rules->add(function ($entity, $options) {
+                // Return a boolean to indicate pass/failure
+            }, 'ruleName');
+
+            // Add a rule for create.
+            $rules->addCreate(function ($entity, $options) {
+                // Return a boolean to indicate pass/failure
+            }, 'ruleName');
+
+            // Add a rule for update
+            $rules->addUpdate(function ($entity, $options) {
+                // Return a boolean to indicate pass/failure
+            }, 'ruleName');
+
+            // Add a rule for the deleting.
+            $rules->addDelete(function ($entity, $options) {
+                // Return a boolean to indicate pass/failure
+            }, 'ruleName');
+
+            return $rules;
+        }
+
+
+
 }
